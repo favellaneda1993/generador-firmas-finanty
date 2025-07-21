@@ -50,19 +50,24 @@
       margin-top: 30px;
       background-color: #fff;
     }
+    /* Contenedor principal de la firma */
     .signature-container {
       display: flex;
-      flex-direction: column;
+      align-items: center;
       gap: 20px;
       font-family: Arial, sans-serif;
+      flex-wrap: wrap;
     }
+    /* Logo */
     .signature-container img {
       width: 80px; /* Reducción del tamaño del logo */
       height: auto;
     }
+    /* Sección con nombre, cargo y propósito */
     .info {
       font-size: 13px;
       color: #000;
+      max-width: 300px;
     }
     .info .nombre {
       font-weight: bold;
@@ -71,20 +76,26 @@
     .info .cargo {
       font-weight: bold;
       font-size: 13px;
+      color: #1E90FF; /* Azul para el cargo */
     }
     .info .proposito {
       margin: 10px 0;
+      color: #1E90FF; /* Azul para el propósito */
     }
     .info a {
       color: #000;
       text-decoration: none;
     }
-    .info .datos {
-      margin-top: 10px;
-      line-height: 1.6;
+    /* Sección con los datos de contacto */
+    .contacto {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 10px;
+      max-width: 250px;
     }
-    .info .datos i {
-      margin-right: 6px;
+    .contacto .datos {
+      line-height: 1.6;
     }
     .confidencial {
       font-size: 11px;
@@ -97,7 +108,6 @@
   <div class="container">
     <div class="header">Generador de firmas Finanty</div>
 
-    <!-- Instrucciones para el usuario -->
     <div>
       <p><strong>Paso 1:</strong> Complete sus datos</p>
       <p><strong>Paso 2:</strong> Copie el resultado</p>
@@ -120,7 +130,6 @@
     <div class="form-group"><label>Teléfono:</label><input id="telefono" type="text" placeholder="+01 717 2246" onchange="generarFirma()"></div>
     <div class="form-group"><label>Celular:</label><input id="celular" type="text" placeholder="+51 957851581" onchange="generarFirma()"></div>
 
-    <!-- El resultado de la firma se mostrará aquí -->
     <div class="firma-preview" id="firmaPreview"></div>
   </div>
 
@@ -136,14 +145,14 @@
       const celular = document.getElementById("celular").value;
       const confidencialidad = document.querySelector('input[name="confidencialidad"]:checked').value;
 
-      // Creación de la firma HTML, insertando los datos y el logo
+      // Creación de la firma HTML con las secciones divididas horizontalmente
       const firmaHTML = `
         <div class="signature-container">
-          <!-- Logo de la empresa -->
+          <!-- Logo -->
           <div class="logo-container">
             <img src="https://raw.githubusercontent.com/favellaneda1993/generador-firmas-finanty/main/ibm-logo.jpg" alt="Logo Finanty">
           </div>
-          <!-- Información de la firma (nombre, cargo y mensaje) -->
+          <!-- Nombre, Cargo y Propósito -->
           <div class="info">
             <div class="nombre">${nombre}</div>
             <div class="cargo">${cargo}</div>
@@ -152,8 +161,8 @@
               Generar salud financiera para fortalecer el bienestar de familias peruanas y PYMES
             </div>
           </div>
-          <!-- Información de contacto -->
-          <div class="info">
+          <!-- Datos de contacto (teléfono, celular, email, web, dirección) -->
+          <div class="contacto">
             <div class="datos">
               📞 T:${telefono} &nbsp;&nbsp; 📱 C:${celular}<br>
               ✉ <a href="mailto:${email}">${email}</a><br>
@@ -161,7 +170,7 @@
               📍 ${direccion}
             </div>
           </div>
-          <!-- Mensaje de confidencialidad (solo si se marca "Sí") -->
+          <!-- Mensaje de confidencialidad (si se selecciona "Sí") -->
           ${confidencialidad === "Sí" ? `
             <div class="confidencial">
               <strong>DECLARACIÓN DE CONFIDENCIALIDAD Y PRIVILEGIO</strong><br>
@@ -177,5 +186,6 @@
   </script>
 </body>
 </html>
+
 
 
