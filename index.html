@@ -52,7 +52,7 @@
     }
     .signature-container {
       display: flex;
-      align-items: flex-start;
+      flex-direction: column;
       gap: 20px;
       font-family: Arial, sans-serif;
     }
@@ -91,43 +91,36 @@
       color: #333;
       margin-top: 20px;
     }
-    button {
-      background-color: #4CAF50;
-      color: white;
-      padding: 10px 20px;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      margin-top: 20px;
-    }
-    button:hover {
-      background-color: #45a049;
-    }
   </style>
 </head>
 <body>
   <div class="container">
     <div class="header">Generador de firmas Finanty</div>
 
+    <!-- Instrucciones para el usuario -->
+    <div>
+      <p><strong>Paso 1:</strong> Complete sus datos</p>
+      <p><strong>Paso 2:</strong> Copie el resultado</p>
+      <p><strong>Paso 3:</strong> Pegue el resultado en su cliente de correo (Outlook)</p>
+    </div>
+
     <div class="form-group">
       <label>Incluir mensaje de confidencialidad:</label>
       <div class="radio-group">
-        <label><input type="radio" name="confidencialidad" value="Sí"> Sí</label>
-        <label><input type="radio" name="confidencialidad" value="No" checked> No</label>
+        <label><input type="radio" name="confidencialidad" value="Sí" onchange="generarFirma()"> Sí</label>
+        <label><input type="radio" name="confidencialidad" value="No" checked onchange="generarFirma()"> No</label>
       </div>
     </div>
 
-    <div class="form-group"><label>Nombres y Apellidos:</label><input id="nombre" type="text"></div>
-    <div class="form-group"><label>Cargo:</label><input id="cargo" type="text"></div>
-    <div class="form-group"><label>Dirección:</label><input id="direccion" type="text"></div>
-    <div class="form-group"><label>Web:</label><input id="web" type="text" placeholder="www.finanty.com"></div>
-    <div class="form-group"><label>Email:</label><input id="email" type="email"></div>
-    <div class="form-group"><label>Teléfono:</label><input id="telefono" type="text" placeholder="+01 717 2246"></div>
-    <div class="form-group"><label>Celular:</label><input id="celular" type="text" placeholder="+51 957851581"></div>
+    <div class="form-group"><label>Nombres y Apellidos:</label><input id="nombre" type="text" onchange="generarFirma()"></div>
+    <div class="form-group"><label>Cargo:</label><input id="cargo" type="text" onchange="generarFirma()"></div>
+    <div class="form-group"><label>Dirección:</label><input id="direccion" type="text" onchange="generarFirma()"></div>
+    <div class="form-group"><label>Web:</label><input id="web" type="text" placeholder="www.finanty.com" onchange="generarFirma()"></div>
+    <div class="form-group"><label>Email:</label><input id="email" type="email" onchange="generarFirma()"></div>
+    <div class="form-group"><label>Teléfono:</label><input id="telefono" type="text" placeholder="+01 717 2246" onchange="generarFirma()"></div>
+    <div class="form-group"><label>Celular:</label><input id="celular" type="text" placeholder="+51 957851581" onchange="generarFirma()"></div>
 
-    <button onclick="generarFirma()">Generar Firma</button>
-    <button onclick="copiarFirma()">Copiar Firma</button>
-
+    <!-- El resultado de la firma se mostrará aquí -->
     <div class="firma-preview" id="firmaPreview"></div>
   </div>
 
@@ -150,7 +143,7 @@
           <div class="logo-container">
             <img src="https://raw.githubusercontent.com/favellaneda1993/generador-firmas-finanty/main/ibm-logo.jpg" alt="Logo Finanty">
           </div>
-          <!-- Información de la firma -->
+          <!-- Información de la firma (nombre, cargo y mensaje) -->
           <div class="info">
             <div class="nombre">${nombre}</div>
             <div class="cargo">${cargo}</div>
@@ -158,42 +151,31 @@
               <strong>Nuestro Propósito</strong><br>
               Generar salud financiera para fortalecer el bienestar de familias peruanas y PYMES
             </div>
+          </div>
+          <!-- Información de contacto -->
+          <div class="info">
             <div class="datos">
               📞 T:${telefono} &nbsp;&nbsp; 📱 C:${celular}<br>
               ✉ <a href="mailto:${email}">${email}</a><br>
               🌐 <a href="${web}" target="_blank">${web}</a><br>
               📍 ${direccion}
             </div>
-            ${confidencialidad === "Sí" ? `
-              <!-- Mensaje de confidencialidad si se selecciona "Sí" -->
-              <div class="confidencial">
-                <strong>DECLARACIÓN DE CONFIDENCIALIDAD Y PRIVILEGIO</strong><br>
-                Este correo electrónico y/o el material adjunto es para uso exclusivo de la persona o entidad a la que expresamente se le ha enviado... (puedes personalizar el texto completo según el modelo institucional).
-              </div>
-            ` : ""}
           </div>
+          <!-- Mensaje de confidencialidad (solo si se marca "Sí") -->
+          ${confidencialidad === "Sí" ? `
+            <div class="confidencial">
+              <strong>DECLARACIÓN DE CONFIDENCIALIDAD Y PRIVILEGIO</strong><br>
+              Este correo electrónico y/o el material adjunto es para uso exclusivo de la persona o entidad a la que expresamente se le ha enviado... (puedes personalizar el texto completo según el modelo institucional).
+            </div>
+          ` : ""}
         </div>
       `;
 
       // Mostrar la firma generada en la página
       document.getElementById("firmaPreview").innerHTML = firmaHTML;
     }
-
-    // Función que copia la firma generada al portapapeles
-    function copiarFirma() {
-      // Crea un campo temporal de texto con la firma generada
-      const firma = document.getElementById("firmaPreview").innerText;
-      const input = document.createElement("textarea");
-      input.value = firma;  // Asigna el contenido de la firma al campo temporal
-      document.body.appendChild(input);
-      input.select(); // Selecciona el texto
-      document.execCommand("copy"); // Copia al portapapeles
-      document.body.removeChild(input); // Elimina el campo temporal
-
-      // Notificación de que la firma ha sido copiada
-      alert("Firma copiada al portapapeles");
-    }
   </script>
 </body>
 </html>
+
 
