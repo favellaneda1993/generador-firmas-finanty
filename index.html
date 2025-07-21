@@ -50,23 +50,22 @@
       margin-top: 30px;
       background-color: #fff;
     }
-    /* Contenedor principal de la firma */
+    /* Contenedor de la firma con separación en 3 secciones */
     .signature-container {
       display: flex;
-      align-items: center;
-      gap: 20px;
-      font-family: Arial, sans-serif;
       flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
     }
     /* Logo */
-    .signature-container img {
-      width: 80px; /* Reducción del tamaño del logo */
+    .logo-container img {
+      width: 80px; /* Ajuste del tamaño del logo */
       height: auto;
+      margin-right: 10px;
     }
-    /* Sección con nombre, cargo y propósito */
+    /* Sección de nombre y puesto */
     .info {
-      font-size: 13px;
-      color: #000;
+      flex-grow: 1;
       max-width: 300px;
     }
     .info .nombre {
@@ -76,31 +75,41 @@
     .info .cargo {
       font-weight: bold;
       font-size: 13px;
-      color: #1E90FF; /* Azul para el cargo */
+      color: #1E90FF; /* Color azul para el puesto */
     }
     .info .proposito {
       margin: 10px 0;
-      color: #1E90FF; /* Azul para el propósito */
+      color: #1E90FF; /* Color azul para el propósito */
     }
-    .info a {
-      color: #000;
-      text-decoration: none;
-    }
-    /* Sección con los datos de contacto */
+    /* Contenedor de los datos de contacto */
     .contacto {
       display: flex;
       flex-direction: column;
       justify-content: space-between;
       gap: 10px;
-      max-width: 250px;
+      align-items: flex-start;
     }
     .contacto .datos {
       line-height: 1.6;
     }
+    /* Estilo para el mensaje de confidencialidad */
     .confidencial {
       font-size: 11px;
       color: #333;
       margin-top: 20px;
+    }
+    /* Botones */
+    button {
+      background-color: #4CAF50;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+    button:hover {
+      background-color: #45a049;
     }
   </style>
 </head>
@@ -150,7 +159,7 @@
         <div class="signature-container">
           <!-- Logo -->
           <div class="logo-container">
-            <img src="https://raw.githubusercontent.com/favellaneda1993/generador-firmas-finanty/main/ibm-logo.png" alt="Logo Finanty">
+            <img src="https://raw.githubusercontent.com/favellaneda1993/generador-firmas-finanty/main/ibm-logo.jpg" alt="Logo Finanty">
           </div>
           <!-- Nombre, Cargo y Propósito -->
           <div class="info">
@@ -186,6 +195,7 @@
   </script>
 </body>
 </html>
+
 
 
 
