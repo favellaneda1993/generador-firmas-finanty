@@ -119,44 +119,46 @@
   </div>
 
   <script>
-    function generarFirma() {
-      const nombre = document.getElementById("nombre").value;
-      const cargo = document.getElementById("cargo").value;
-      const direccion = document.getElementById("direccion").value;
-      const web = document.getElementById("web").value;
-      const email = document.getElementById("email").value;
-      const telefono = document.getElementById("telefono").value;
-      const celular = document.getElementById("celular").value;
-      const confidencialidad = document.querySelector('input[name="confidencialidad"]:checked').value;
+  function generarFirma() {
+  const nombre = document.getElementById("nombre").value;
+  const cargo = document.getElementById("cargo").value;
+  const direccion = document.getElementById("direccion").value;
+  const web = document.getElementById("web").value;
+  const email = document.getElementById("email").value;
+  const telefono = document.getElementById("telefono").value;
+  const celular = document.getElementById("celular").value;
+  const confidencialidad = document.querySelector('input[name="confidencialidad"]:checked').value;
 
-      const firmaHTML = `
-        <div class="signature-container">
-          <img src="https://github.com/favellaneda1993/generador-firmas-finanty/blob/main/ibm-logo.jpg?raw=true" alt="Logo Finanty">
-          <div class="info">
-            <div class="nombre">${nombre}</div>
-            <div class="cargo">${cargo}</div>
-            <div class="proposito">
-              <strong>Nuestro Propósito</strong><br>
-              Generar salud financiera para fortalecer el bienestar de familias peruanas y PYMES
-            </div>
-            <div class="datos">
-              📞 T:${telefono} &nbsp;&nbsp; 📱 C:${celular}<br>
-              ✉ <a href="mailto:${email}">${email}</a><br>
-              🌐 <a href="${web}" target="_blank">${web}</a><br>
-              📍 ${direccion}
-            </div>
-            ${confidencialidad === "Sí" ? `
-              <div class="confidencial">
-                <strong>DECLARACIÓN DE CONFIDENCIALIDAD Y PRIVILEGIO</strong><br>
-                Este correo electrónico y/o el material adjunto es para uso exclusivo de la persona o entidad a la que expresamente se le ha enviado... (puedes personalizar el texto completo según el modelo institucional).
-              </div>
-            ` : ""}
-          </div>
+  const firmaHTML = `
+    <div class="signature-container">
+      <div class="logo-container">
+        <img src="https://raw.githubusercontent.com/favellaneda1993/generador-firmas-finanty/main/logo.png" alt="Logo Finanty">
+      </div>
+      <div class="info">
+        <div class="nombre">${nombre}</div>
+        <div class="cargo">${cargo}</div>
+        <div class="proposito">
+          <strong>Nuestro Propósito</strong><br>
+          Generar salud financiera para fortalecer el bienestar de familias peruanas y PYMES
         </div>
-      `;
+        <div class="datos">
+          📞 T:${telefono} &nbsp;&nbsp; 📱 C:${celular}<br>
+          ✉ <a href="mailto:${email}">${email}</a><br>
+          🌐 <a href="${web}" target="_blank">${web}</a><br>
+          📍 ${direccion}
+        </div>
+        ${confidencialidad === "Sí" ? `
+          <div class="confidencial">
+            <strong>DECLARACIÓN DE CONFIDENCIALIDAD Y PRIVILEGIO</strong><br>
+            Este correo electrónico y/o el material adjunto es para uso exclusivo de la persona o entidad a la que expresamente se le ha enviado... (puedes personalizar el texto completo según el modelo institucional).
+          </div>
+        ` : ""}
+      </div>
+    </div>
+  `;
 
-      document.getElementById("firmaPreview").innerHTML = firmaHTML;
-    }
+  document.getElementById("firmaPreview").innerHTML = firmaHTML;
+}
   </script>
 </body>
 </html>
