@@ -109,7 +109,6 @@
   <div class="container">
     <div class="header">Generador de firmas Finanty</div>
 
-    <!-- Formulario para ingresar los datos de la firma -->
     <div class="form-group">
       <label>Incluir mensaje de confidencialidad:</label>
       <div class="radio-group">
@@ -118,7 +117,6 @@
       </div>
     </div>
 
-    <!-- Entradas de texto para datos -->
     <div class="form-group"><label>Nombres y Apellidos:</label><input id="nombre" type="text"></div>
     <div class="form-group"><label>Cargo:</label><input id="cargo" type="text"></div>
     <div class="form-group"><label>Dirección:</label><input id="direccion" type="text"></div>
@@ -127,13 +125,9 @@
     <div class="form-group"><label>Teléfono:</label><input id="telefono" type="text" placeholder="+01 717 2246"></div>
     <div class="form-group"><label>Celular:</label><input id="celular" type="text" placeholder="+51 957851581"></div>
 
-    <!-- Botón para generar firma -->
     <button onclick="generarFirma()">Generar Firma</button>
-    
-    <!-- Botón para copiar automáticamente la firma generada -->
     <button onclick="copiarFirma()">Copiar Firma</button>
 
-    <!-- Aquí se mostrará la firma generada -->
     <div class="firma-preview" id="firmaPreview"></div>
   </div>
 
@@ -156,7 +150,6 @@
           <div class="logo-container">
             <img src="https://raw.githubusercontent.com/favellaneda1993/generador-firmas-finanty/main/ibm-logo.jpg" alt="Logo Finanty">
           </div>
-          
           <!-- Información de la firma -->
           <div class="info">
             <div class="nombre">${nombre}</div>
@@ -203,6 +196,4 @@
   </script>
 </body>
 </html>
-  </script>
-</body>
-</html>
+
