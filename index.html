@@ -13,8 +13,8 @@
       background: #fff;
       border-radius: 8px;
       padding: 20px;
-      max-width: 650px;  /* Ajustamos el ancho */
-      margin: 0 auto;    /* Centramos el formulario */
+      max-width: 650px;
+      margin: 0 auto;
       box-shadow: 0 0 10px rgba(0,0,0,0.1);
     }
     .header {
@@ -35,7 +35,7 @@
     }
     input, select {
       width: 100%;
-      padding: 10px;   /* Ajustamos el tamaño de los campos */
+      padding: 10px;
       border: 1px solid #ccc;
       border-radius: 4px;
       margin-bottom: 10px;
@@ -50,6 +50,55 @@
       padding: 25px;
       margin-top: 30px;
       background-color: #fff;
+    }
+
+    /* Estructura en tabla sin bordes */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    /* Eliminar bordes de la tabla */
+    table, th, td {
+      border: none;
+    }
+
+    th, td {
+      padding: 10px;
+      text-align: left;
+    }
+
+    /* Logo */
+    .logo-container img {
+      width: 60px; /* Ajuste del tamaño del logo */
+      height: auto;
+    }
+    /* Sección de nombre y puesto */
+    .info {
+      font-size: 13px;
+      color: #000;
+    }
+    .info .nombre {
+      font-weight: bold;
+      font-size: 15px;
+    }
+    .info .cargo {
+      font-weight: bold;
+      font-size: 13px;
+      color: #1E90FF; /* Azul para el puesto */
+    }
+    .info .proposito {
+      margin: 10px 0;
+      color: #1E90FF; /* Azul para el propósito */
+    }
+    /* Datos de contacto */
+    .contacto .datos {
+      line-height: 1.6;
+    }
+    .confidencial {
+      font-size: 11px;
+      color: #333;
+      margin-top: 20px;
     }
   </style>
 </head>
@@ -98,12 +147,12 @@
         <table>
           <tr>
             <!-- Columna 1: Logo -->
-            <td style="width: 80px; padding: 10px; border: 1px solid white;">
-              <img src="https://raw.githubusercontent.com/favellaneda1993/generador-firmas-finanty/main/ibm-logo.jpg" alt="Logo Finanty" style="width: 70px; height: auto;">
+            <td style="width: 80px; padding: 10px;">
+              <img src="https://raw.githubusercontent.com/favellaneda1993/generador-firmas-finanty/main/ibm-logo.jpg" alt="Logo Finanty" style="width: 60px; height: auto;">
             </td>
 
             <!-- Columna 2: Nombre, Cargo, Propósito -->
-            <td style="padding: 10px; border: 1px solid white; vertical-align: top;">
+            <td style="padding: 10px; vertical-align: top;">
               <div style="font-weight: bold; font-size: 14px;">${nombre}</div>
               <div style="font-size: 13px; font-weight: bold; color: #1E90FF;">${cargo}</div>
               <div style="margin-top: 8px;">
@@ -117,7 +166,7 @@
             </td>
 
             <!-- Columna 3: Datos de contacto -->
-            <td style="padding: 10px; border: 1px solid white; vertical-align: top;">
+            <td style="padding: 10px; vertical-align: top;">
               <div style="font-size: 13px;">
                 📞 T: ${telefono}<br>
                 📱 C: ${celular}<br>
