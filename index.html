@@ -50,23 +50,32 @@
       margin-top: 30px;
       background-color: #fff;
     }
-    /* Contenedor de la firma con separación en 3 secciones */
-    .signature-container {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      align-items: center;
+
+    /* Estructura en tabla */
+    table {
+      width: 100%;
+      border-collapse: collapse;
     }
+
+    /* Ocultar las líneas de las tablas haciendo que sean blancas */
+    table, th, td {
+      border: 1px solid white;
+    }
+
+    th, td {
+      padding: 10px;
+      text-align: left;
+    }
+
     /* Logo */
     .logo-container img {
       width: 80px; /* Ajuste del tamaño del logo */
       height: auto;
-      margin-right: 10px;
     }
     /* Sección de nombre y puesto */
     .info {
-      flex-grow: 1;
-      max-width: 300px;
+      font-size: 13px;
+      color: #000;
     }
     .info .nombre {
       font-weight: bold;
@@ -75,41 +84,20 @@
     .info .cargo {
       font-weight: bold;
       font-size: 13px;
-      color: #1E90FF; /* Color azul para el puesto */
+      color: #1E90FF; /* Azul para el puesto */
     }
     .info .proposito {
       margin: 10px 0;
-      color: #1E90FF; /* Color azul para el propósito */
+      color: #1E90FF; /* Azul para el propósito */
     }
-    /* Contenedor de los datos de contacto */
-    .contacto {
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      gap: 10px;
-      align-items: flex-start;
-    }
+    /* Datos de contacto */
     .contacto .datos {
       line-height: 1.6;
     }
-    /* Estilo para el mensaje de confidencialidad */
     .confidencial {
       font-size: 11px;
       color: #333;
       margin-top: 20px;
-    }
-    /* Botones */
-    button {
-      background-color: #4CAF50;
-      color: white;
-      padding: 10px 20px;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      margin-top: 20px;
-    }
-    button:hover {
-      background-color: #45a049;
     }
   </style>
 </head>
@@ -154,39 +142,40 @@
       const celular = document.getElementById("celular").value;
       const confidencialidad = document.querySelector('input[name="confidencialidad"]:checked').value;
 
-      // Creación de la firma HTML con las secciones divididas horizontalmente
+      // Creación de la firma HTML usando una tabla con tres columnas
       const firmaHTML = `
-        <div class="signature-container">
-          <!-- Logo -->
-          <div class="logo-container">
-            <img src="https://raw.githubusercontent.com/favellaneda1993/generador-firmas-finanty/main/ibm-logo.jpg" alt="Logo Finanty">
+        <table>
+          <tr>
+            <!-- Logo -->
+            <td class="logo-container">
+              <img src="https://raw.githubusercontent.com/favellaneda1993/generador-firmas-finanty/main/ibm-logo.jpg" alt="Logo Finanty">
+            </td>
+            <!-- Nombre, Cargo, Propósito -->
+            <td class="info">
+              <div class="nombre">${nombre}</div>
+              <div class="cargo">${cargo}</div>
+              <div class="proposito">
+                <strong>Nuestro Propósito</strong><br>
+                Generar salud financiera para fortalecer el bienestar de familias peruanas y PYMES
+              </div>
+            </td>
+            <!-- Datos de contacto -->
+            <td class="contacto">
+              <div class="datos">
+                📞 T:${telefono} &nbsp;&nbsp; 📱 C:${celular}<br>
+                ✉ <a href="mailto:${email}">${email}</a><br>
+                🌐 <a href="${web}" target="_blank">${web}</a><br>
+                📍 ${direccion}
+              </div>
+            </td>
+          </tr>
+        </table>
+        ${confidencialidad === "Sí" ? `
+          <div class="confidencial">
+            <strong>DECLARACIÓN DE CONFIDENCIALIDAD Y PRIVILEGIO</strong><br>
+            Este correo electrónico y/o el material adjunto es para uso exclusivo de la persona o entidad a la que expresamente se le ha enviado... (puedes personalizar el texto completo según el modelo institucional).
           </div>
-          <!-- Nombre, Cargo y Propósito -->
-          <div class="info">
-            <div class="nombre">${nombre}</div>
-            <div class="cargo">${cargo}</div>
-            <div class="proposito">
-              <strong>Nuestro Propósito</strong><br>
-              Generar salud financiera para fortalecer el bienestar de familias peruanas y PYMES
-            </div>
-          </div>
-          <!-- Datos de contacto (teléfono, celular, email, web, dirección) -->
-          <div class="contacto">
-            <div class="datos">
-              📞 T:${telefono} &nbsp;&nbsp; 📱 C:${celular}<br>
-              ✉ <a href="mailto:${email}">${email}</a><br>
-              🌐 <a href="${web}" target="_blank">${web}</a><br>
-              📍 ${direccion}
-            </div>
-          </div>
-          <!-- Mensaje de confidencialidad (si se selecciona "Sí") -->
-          ${confidencialidad === "Sí" ? `
-            <div class="confidencial">
-              <strong>DECLARACIÓN DE CONFIDENCIALIDAD Y PRIVILEGIO</strong><br>
-              Este correo electrónico y/o el material adjunto es para uso exclusivo de la persona o entidad a la que expresamente se le ha enviado... (puedes personalizar el texto completo según el modelo institucional).
-            </div>
-          ` : ""}
-        </div>
+        ` : ""}
       `;
 
       // Mostrar la firma generada en la página
