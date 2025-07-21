@@ -144,32 +144,39 @@
 
       // Creación de la firma HTML usando una tabla con tres columnas
       const firmaHTML = `
-        <table>
-          <tr>
-            <!-- Logo -->
-            <td class="logo-container">
-              <img src="https://raw.githubusercontent.com/favellaneda1993/generador-firmas-finanty/main/ibm-logo.jpg" alt="Logo Finanty">
-            </td>
-            <!-- Nombre, Cargo, Propósito -->
-            <td class="info">
-              <div class="nombre">${nombre}</div>
-              <div class="cargo">${cargo}</div>
-              <div class="proposito">
-                <strong>Nuestro Propósito</strong><br>
-                Generar salud financiera para fortalecer el bienestar de familias peruanas y PYMES
-              </div>
-            </td>
-            <!-- Datos de contacto -->
-            <td class="contacto">
-              <div class="datos">
-                📞 T:${telefono} &nbsp;&nbsp; 📱 C:${celular}<br>
-                ✉ <a href="mailto:${email}">${email}</a><br>
-                🌐 <a href="${web}" target="_blank">${web}</a><br>
-                📍 ${direccion}
-              </div>
-            </td>
-          </tr>
-        </table>
+<table style="width: 100%; font-family: Arial, sans-serif; border-collapse: collapse; border: 1px solid white;">
+  <tr>
+    <!-- Columna 1: Logo -->
+    <td style="width: 80px; padding: 10px; border: 1px solid white;">
+      <img src="https://raw.githubusercontent.com/favellaneda1993/generador-firmas-finanty/main/ibm-logo.jpg" alt="Logo Finanty" style="width: 70px; height: auto;">
+    </td>
+
+    <!-- Columna 2: Nombre, cargo, propósito -->
+    <td style="padding: 10px; border: 1px solid white; vertical-align: top;">
+      <div style="font-weight: bold; font-size: 14px;">Franco Avellaneda</div>
+      <div style="font-size: 13px; font-weight: bold; color: #1E90FF;">Asistente de TI</div>
+      <div style="margin-top: 8px;">
+        <span style="color: #1E90FF; font-weight: bold;">Nuestro Propósito</span><br>
+        <span style="color: #1E90FF;">
+          Generar salud financiera<br>
+          para fortalecer el bienestar<br>
+          de familias peruanas y PYMES
+        </span>
+      </div>
+    </td>
+
+    <!-- Columna 3: Datos de contacto -->
+    <td style="padding: 10px; border: 1px solid white; vertical-align: top;">
+      <div style="font-size: 13px;">
+        📞 T: +01 418 1939<br>
+        📱 C: +51 957855181<br>
+        ✉ <a href="mailto:favellaneda@finanty.com" style="color: black; text-decoration: none;">favellaneda@finanty.com</a><br>
+        🌐 <a href="https://www.firma.com" style="color: black; text-decoration: none;">www.firma.com</a><br>
+        📍 Av Dionisio Derteano 184,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Lima 15047
+      </div>
+    </td>
+  </tr>
+</table>
         ${confidencialidad === "Sí" ? `
           <div class="confidencial">
             <strong>DECLARACIÓN DE CONFIDENCIALIDAD Y PRIVILEGIO</strong><br>
