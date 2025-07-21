@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Generador de Firmas</title>
+  <title>Generador de firmas Finanty</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -57,7 +57,7 @@
       font-family: Arial, sans-serif;
     }
     .signature-container img {
-      width: 80px;
+      width: 80px; /* Reducción del tamaño del logo */
       height: auto;
     }
     .info {
@@ -91,12 +91,25 @@
       color: #333;
       margin-top: 20px;
     }
+    button {
+      background-color: #4CAF50;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+    button:hover {
+      background-color: #45a049;
+    }
   </style>
 </head>
 <body>
   <div class="container">
-    <div class="header">Generador de Firmas</div>
+    <div class="header">Generador de firmas Finanty</div>
 
+    <!-- Formulario para ingresar los datos de la firma -->
     <div class="form-group">
       <label>Incluir mensaje de confidencialidad:</label>
       <div class="radio-group">
@@ -105,6 +118,7 @@
       </div>
     </div>
 
+    <!-- Entradas de texto para datos -->
     <div class="form-group"><label>Nombres y Apellidos:</label><input id="nombre" type="text"></div>
     <div class="form-group"><label>Cargo:</label><input id="cargo" type="text"></div>
     <div class="form-group"><label>Dirección:</label><input id="direccion" type="text"></div>
@@ -113,52 +127,79 @@
     <div class="form-group"><label>Teléfono:</label><input id="telefono" type="text" placeholder="+01 717 2246"></div>
     <div class="form-group"><label>Celular:</label><input id="celular" type="text" placeholder="+51 957851581"></div>
 
+    <!-- Botón para generar firma -->
     <button onclick="generarFirma()">Generar Firma</button>
+    
+    <!-- Botón para copiar automáticamente la firma generada -->
+    <button onclick="copiarFirma()">Copiar Firma</button>
 
+    <!-- Aquí se mostrará la firma generada -->
     <div class="firma-preview" id="firmaPreview"></div>
   </div>
 
   <script>
-  function generarFirma() {
-  const nombre = document.getElementById("nombre").value;
-  const cargo = document.getElementById("cargo").value;
-  const direccion = document.getElementById("direccion").value;
-  const web = document.getElementById("web").value;
-  const email = document.getElementById("email").value;
-  const telefono = document.getElementById("telefono").value;
-  const celular = document.getElementById("celular").value;
-  const confidencialidad = document.querySelector('input[name="confidencialidad"]:checked').value;
+    // Función que genera la firma con los datos introducidos
+    function generarFirma() {
+      const nombre = document.getElementById("nombre").value;
+      const cargo = document.getElementById("cargo").value;
+      const direccion = document.getElementById("direccion").value;
+      const web = document.getElementById("web").value;
+      const email = document.getElementById("email").value;
+      const telefono = document.getElementById("telefono").value;
+      const celular = document.getElementById("celular").value;
+      const confidencialidad = document.querySelector('input[name="confidencialidad"]:checked').value;
 
-  const firmaHTML = `
-    <div class="signature-container">
-      <div class="logo-container">
-        <img src="https://raw.githubusercontent.com/favellaneda1993/generador-firmas-finanty/main/logo.png" alt="Logo Finanty">
-      </div>
-      <div class="info">
-        <div class="nombre">${nombre}</div>
-        <div class="cargo">${cargo}</div>
-        <div class="proposito">
-          <strong>Nuestro Propósito</strong><br>
-          Generar salud financiera para fortalecer el bienestar de familias peruanas y PYMES
-        </div>
-        <div class="datos">
-          📞 T:${telefono} &nbsp;&nbsp; 📱 C:${celular}<br>
-          ✉ <a href="mailto:${email}">${email}</a><br>
-          🌐 <a href="${web}" target="_blank">${web}</a><br>
-          📍 ${direccion}
-        </div>
-        ${confidencialidad === "Sí" ? `
-          <div class="confidencial">
-            <strong>DECLARACIÓN DE CONFIDENCIALIDAD Y PRIVILEGIO</strong><br>
-            Este correo electrónico y/o el material adjunto es para uso exclusivo de la persona o entidad a la que expresamente se le ha enviado... (puedes personalizar el texto completo según el modelo institucional).
+      // Creación de la firma HTML, insertando los datos y el logo
+      const firmaHTML = `
+        <div class="signature-container">
+          <!-- Logo de la empresa -->
+          <div class="logo-container">
+            <img src="https://raw.githubusercontent.com/favellaneda1993/generador-firmas-finanty/main/logo.png" alt="Logo Finanty">
           </div>
-        ` : ""}
-      </div>
-    </div>
-  `;
+          
+          <!-- Información de la firma -->
+          <div class="info">
+            <div class="nombre">${nombre}</div>
+            <div class="cargo">${cargo}</div>
+            <div class="proposito">
+              <strong>Nuestro Propósito</strong><br>
+              Generar salud financiera para fortalecer el bienestar de familias peruanas y PYMES
+            </div>
+            <div class="datos">
+              📞 T:${telefono} &nbsp;&nbsp; 📱 C:${celular}<br>
+              ✉ <a href="mailto:${email}">${email}</a><br>
+              🌐 <a href="${web}" target="_blank">${web}</a><br>
+              📍 ${direccion}
+            </div>
+            ${confidencialidad === "Sí" ? `
+              <!-- Mensaje de confidencialidad si se selecciona "Sí" -->
+              <div class="confidencial">
+                <strong>DECLARACIÓN DE CONFIDENCIALIDAD Y PRIVILEGIO</strong><br>
+                Este correo electrónico y/o el material adjunto es para uso exclusivo de la persona o entidad a la que expresamente se le ha enviado... (puedes personalizar el texto completo según el modelo institucional).
+              </div>
+            ` : ""}
+          </div>
+        </div>
+      `;
 
-  document.getElementById("firmaPreview").innerHTML = firmaHTML;
-}
+      // Mostrar la firma generada en la página
+      document.getElementById("firmaPreview").innerHTML = firmaHTML;
+    }
+
+    // Función que copia la firma generada al portapapeles
+    function copiarFirma() {
+      // Crea un campo temporal de texto con la firma generada
+      const firma = document.getElementById("firmaPreview").innerText;
+      const input = document.createElement("textarea");
+      input.value = firma;  // Asigna el contenido de la firma al campo temporal
+      document.body.appendChild(input);
+      input.select(); // Selecciona el texto
+      document.execCommand("copy"); // Copia al portapapeles
+      document.body.removeChild(input); // Elimina el campo temporal
+
+      // Notificación de que la firma ha sido copiada
+      alert("Firma copiada al portapapeles");
+    }
   </script>
 </body>
 </html>
