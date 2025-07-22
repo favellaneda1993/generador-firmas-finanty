@@ -144,38 +144,39 @@
       const confidencialidad = document.querySelector('input[name="confidencialidad"]:checked').value;
 
       const firmaHTML = `
-        <table>
-          <tr>
-            <!-- Columna 1: Logo -->
-            <td style="width: 80px; padding: 10px;">
-             <img src="https://raw.githubusercontent.com/favellaneda1993/generador-firmas-finanty/main/ibm-logo.jpg" alt="Logo Finanty" style="width: 60px; height: 60px; object-fit: contain;">
-            </td>
-            <!-- Columna 2: Nombre, Cargo, Propósito -->
-            <td style="padding: 10px; vertical-align: top;">
-              <div style="font-weight: bold; font-size: 14px;">${nombre}</div>
-              <div style="font-size: 13px; font-weight: bold; color: #1E90FF;">${cargo}</div>
-              <div style="margin-top: 8px;">
-                <span style="color: #1E90FF; font-weight: bold;">Nuestro Propósito</span><br>
-                <span style="color: #1E90FF;">
-                  Generar salud financiera<br>
-                  para fortalecer el bienestar<br>
-                  de familias peruanas y PYMES
-                </span>
-              </div>
-            </td>
+  <table style="width: 100%; border-collapse: collapse;">
+    <tr>
+    <!-- Columna 1: Logo -->
+    <td style="width: 80px; padding: 10px; text-align: center;">
+      <img src="https://raw.githubusercontent.com/favellaneda1993/generador-firmas-finanty/main/ibm-logo.jpg" alt="Logo Finanty" style="max-width: 60px; height: auto;">
+    </td>
 
-            <!-- Columna 3: Datos de contacto -->
-            <td style="padding: 10px; vertical-align: top;">
-              <div style="font-size: 13px;">
-                📞 T: ${telefono}<br>
-                📱 C: ${celular}<br>
-                ✉ <a href="mailto:${email}" style="color: black; text-decoration: none;">${email}</a><br>
-                🌐 <a href="${web}" target="_blank" style="color: black; text-decoration: none;">${web}</a><br>
-                📍 ${direccion}
-              </div>
-            </td>
-          </tr>
-        </table>
+    <!-- Columna 2: Nombre, Cargo, Propósito -->
+    <td style="padding: 10px; vertical-align: top;">
+      <div style="font-weight: bold; font-size: 14px;">${nombre}</div>
+      <div style="font-size: 13px; font-weight: bold; color: #1E90FF;">${cargo}</div>
+      <div style="margin-top: 8px;">
+        <span style="color: #1E90FF; font-weight: bold;">Nuestro Propósito</span><br>
+        <span style="color: #1E90FF;">
+          Generar salud financiera<br>
+          para fortalecer el bienestar<br>
+          de familias peruanas y PYMES
+        </span>
+      </div>
+    </td>
+
+    <!-- Columna 3: Datos de contacto -->
+    <td style="padding: 10px; vertical-align: top;">
+      <div style="font-size: 13px;">
+        📞 T: ${telefono}<br>
+        📱 C: ${celular}<br>
+        ✉ <a href="mailto:${email}" style="color: black; text-decoration: none;">${email}</a><br>
+        🌐 <a href="${web}" target="_blank" style="color: black; text-decoration: none;">${web}</a><br>
+        📍 ${direccion}
+      </div>
+    </td>
+  </tr>
+</table>
 
         ${confidencialidad === "Sí" ? `
           <div style="font-size: 11px; font-family: Arial, sans-serif; margin-top: 20px; color: #000;">
